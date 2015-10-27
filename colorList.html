@@ -1,0 +1,69 @@
+<html>
+
+
+<head>
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+
+<h1>  Color Map </h1>
+
+<p id="demo"></p>
+<div id="list1"></div>
+<div id="list2"></div>
+
+<button type="button" onclick="loadDoc()">Change Content</button>
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+
+	  var text=xhttp.responseText;
+	    obj = JSON.parse(text);
+	       document.getElementById("demo").innerHTML = obj[0].color;
+		var ull = document.createElement("ul");     
+		  for(var i =0; i < obj.length; i++){
+		        // Create a <button> element
+var lii = document.createElement("li");  
+var textNode = document.createTextNode(obj[i].color+"  "+obj[i].value); 
+lii.appendChild(textNode);
+ull.appendChild(lii);
+
+document.getElementById("list1").appendChild(ull); 
+}
+var ulll = document.createElement("ul");     
+ for(var x =0; x < obj.length; x++){
+		        // Create a <button> element
+var liii = document.createElement("li");  
+var textNodee = document.createTextNode(obj[x].color+" "+obj[x].value); 
+liii.appendChild(textNodee);
+ulll.appendChild(liii);
+
+document.getElementById("list2").appendChild(ulll); 
+}
+
+    }
+  }
+  xhttp.open("GET", "colorList.json", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+
+
+
+
+
+
+</html>
